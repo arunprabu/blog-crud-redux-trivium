@@ -1,0 +1,43 @@
+Step 0: 
+  npm i react-router-dom
+
+Step 1: 
+  Plan on the URLs.
+
+  localhost:3000/
+  localhost:3000/posts
+  localhost:3000/about
+
+  Have the URL's in Header.js 
+
+Step 2: 
+  Check the page. URL should change. History will be maintained. 
+
+  Let's identify the matching components against the URL's 
+
+  localhost:3000/         - Home  (Fn Comp)
+  localhost:3000/posts    - Posts (Fn Comp)
+  localhost:3000/about    - About (Fn Comp)
+
+Step 3: 
+  Let's configure the routes in App.js 
+  to do this, put the entire app under BrowserRouter from react-router-dom 
+
+  import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+  Now, Let's focus on configuring the routes in between Header and Footer
+
+  <Switch>
+    <Route path='/' component={Home} exact/>
+    <Route path='/posts' component={Posts}/>
+    <Route path='/about' component={About} />
+  </Switch>
+
+Step 4:
+  Page is still refreshing. Let's stop it.
+  in Header.js 
+
+  import { Link } from 'react-router-dom';
+
+  replace <a href> with <Link to> 
+
