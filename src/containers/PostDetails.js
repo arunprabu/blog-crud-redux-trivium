@@ -7,7 +7,7 @@ class PostDetails extends Component {
 
   componentDidMount(){
     // read URL Params
-    this.props.dispatch(getPostById(this.props.match.params.id));
+    this.props.onGetPostById(this.props.match.params.id);
   }
 
   handleUpdate = (event) => {
@@ -24,13 +24,13 @@ class PostDetails extends Component {
 
     console.log(formDataToUpdate);
 
-    this.props.dispatch(updatePost(formDataToUpdate));
+    this.props.onUpdatePost(formDataToUpdate);
   }
 
 
   handleDelete = () => {
     console.log('Into Delete Handler');
-    this.props.dispatch( deletePost(this.props.post.id));
+    this.props.onDeletePost(this.props.post.id);
   }
 
   render() {
@@ -113,6 +113,8 @@ class PostDetails extends Component {
   }
 }
 
+// this fn maps the state data from store into props 
+// props are read-only
 const mapStateToProps = (state) => { // state will come from store
   // it is from state.posts 
   // not from individual post because of the way it is mentioned in combined reducer
@@ -121,4 +123,13 @@ const mapStateToProps = (state) => { // state will come from store
   }
 }
 
-export default connect(mapStateToProps)(PostDetails);
+// mapDispatchToProps with actions 
+const mapDispatchToProps = (dispatch) => { // dispatch will come from store
+  return {
+    onGetPostById: (postId) => dispatch(getPostById(postId)),
+    onUpdatePost: (formData) => dispatch(updatePost(formData)),
+    onDeletePost: (postId) => dispatch(deletePost(postId))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostDetails);

@@ -18,8 +18,14 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger'; // npm i redux-logger 
 import thunk from 'redux-thunk';  //npm i redux-thunk
 
+// setup redux devtools exten
+import { composeWithDevTools } from 'redux-devtools-extension';
+
 // Step 2: creating Store and save it in a const
-const store = createStore(rootReducer, applyMiddleware(thunk, logger)); //this needs a special argument called 'reducer'
+const store = createStore(
+                rootReducer,  
+                composeWithDevTools(applyMiddleware(thunk, logger))
+              );
 
 //Definition: The Provider component uses something 
 //called as React Context which allows you to pass the 
