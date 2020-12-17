@@ -1,8 +1,14 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PostItem from '../components/PostItem';
+import { getPosts } from '../services/postService';
 
 class PostList extends Component {
+
+  componentDidMount(){
+    // Step 19: dispatching to getPosts from service
+    this.props.dispatch(getPosts());
+  }
 
   render() {
     console.log(this.props);
@@ -11,17 +17,11 @@ class PostList extends Component {
     if(this.props.posts && this.props.posts.length > 0){
       posts = this.props.posts.map( (post, index) => {
         return (
-          <div className="list-group-item list-group-item-action" key={index}>
-            <div className="d-flex w-100 justify-content-between">
-              <h5 className="mb-1">
-              <Link to='posts/1'>{post.title}</Link>
-              </h5>
-              <small>Post Id: {post.id}</small>
-            </div>
-            <p className="mb-1">
-              {post.body}
-            </p>
-          </div>
+          <PostItem 
+            id={post.id} 
+            title={post.title}
+            body={post.body} 
+            key={index}/>
        )
       })
     }
@@ -47,7 +47,7 @@ class PostList extends Component {
 const mapStateToProps = (state) => { // state will come from store
   console.log(state);
   return {
-      posts: state.posts
+      posts: state.posts.postList
   }
 }
 

@@ -125,10 +125,10 @@ Step 8:
         //Step 8.2 - clarification - of the following code, 
         //action.type = Event and action.data = Form Data from Add Post
         let addPostState = [
-          ...state,
-          action.payload
-        ];
-        return addPostState;
+        ...state,
+        action.payload
+      ];
+      return addPostState;
       case GET_POSTS: 
         return state; // not implemented yet
       case GET_POST_BY_ID: 
