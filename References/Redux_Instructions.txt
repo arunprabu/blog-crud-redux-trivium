@@ -672,3 +672,22 @@ Solutions
 1. Use ES2015 or else
 2. Use Immer JS https://immerjs.github.io/immer/docs/introduction
    https://immerjs.github.io/immer/docs/example-reducer
+
+
+
+Another project Strucutre
+----
+  components
+  containers 
+  store/
+    configureStore.js 
+    rootReducer.js
+    posts/
+      types.js 
+      reducer.js 
+      actions.js   == service.js 
+    contacts/
+      types.js 
+      reducer.js 
+      actions.js   == service.js 
+    
